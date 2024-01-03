@@ -1,0 +1,16 @@
+{
+  "name": "metro",
+  "version": "1.0.0",
+  "description": "metro database project 2024",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hamim",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "oracledb": "^6.3.0"
+  }
+}
