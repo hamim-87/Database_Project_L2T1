@@ -2,7 +2,7 @@ import express from 'express';
 import {dirname}  from 'path';
 import path from 'path';
 import {fileURLToPath} from 'url';
-import {connectToOracle} from './database/dbconnect.js';
+import {connectToOracle} from './backend/database/dbconnect.js';
 
 
 
@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/signup', (req, res) => {
-    const filePath = path.join(__dirname, '..', 'Frontend', 'signup.html');
+    const filePath = path.join(__dirname, 'Frontend', 'signup.html');
     res.sendFile(filePath);
 
 });
