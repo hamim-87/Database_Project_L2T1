@@ -9,11 +9,11 @@ const dbConfig = {
   password: process.env.DB_PASSWORD,
   connectString: process.env.DB_CONNECTIONSTRING,
 };
-
+let connection;
 
 export async function connectToOracle() {
   try {
-    const connection = await oracledb.getConnection(dbConfig);
+    connection = await oracledb.getConnection(dbConfig);
     console.log('Connected to Oracle Database!');
 
     
