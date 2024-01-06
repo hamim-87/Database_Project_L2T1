@@ -1,11 +1,13 @@
 import oracledb from 'oracledb';
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
+import dotenv from 'dotenv';
+dotenv.config();
 
 
 const dbConfig = {
-  user: 'MetroInverse',
-  password: 'MetroInverse',
-  connectString: 'localhost:1521/orcl2105160',
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  connectString: process.env.DB_CONNECTIONSTRING,
 };
 
 
