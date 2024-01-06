@@ -3,8 +3,8 @@ oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 
 
 const dbConfig = {
-  user: 'hr',
-  password: 'hr',
+  user: 'MetroInverse',
+  password: 'MetroInverse',
   connectString: 'localhost:1521/orcl2105160',
 };
 
@@ -16,7 +16,7 @@ export async function connectToOracle() {
 
     
 
-    const sql = 'SELECT * FROM employees';
+    const sql = 'SELECT * FROM user_info';
 
 
     const result = await connection.execute(sql);
