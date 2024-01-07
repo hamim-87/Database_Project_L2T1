@@ -1,5 +1,5 @@
 import express from 'express';
-import {connectToOracle} from './backend/database/dbconnect.js';
+import {startup, shutdown} from './backend/database/dbconnect.js';
 
 
 import signup from './backend/routes/signup.js';
@@ -22,4 +22,4 @@ app.listen(port,()=>{
     console.log(`listening on ${port}`);
 });
 
-connectToOracle();
+startup();
