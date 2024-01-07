@@ -35,6 +35,7 @@ dotenv.config();
 // }
 
 oracledb.autoCommit = true;
+
  
 // creates connection pool for oracledb
 export async function startup() {
@@ -45,9 +46,11 @@ export async function startup() {
         connectString: process.env.DB_CONNECTIONSTRING,
         poolMin: 4,
         poolMax: 10,
+        poolAlias: 'default',
         poolIncrement: 1
     });    
     console.log('Database Connection Pool Created...');
+    
 }
 
 // closes connection pool for oracledb
@@ -63,12 +66,12 @@ export async function shutdown() {
 }
 
 // code to execute sql
-export async function execute(sql, binds, options){
-    let connection, results;
+export async function execute(sql){
+    let connection,results;
     try {
         // Get a connection from the default pool
-        connection = await oracledb.getConnection();
-        results = await connection.execute(sql, binds, options);
+        connection = await oracledb.getPool().getConnection();
+        results = await connection.execute(sql);
     } catch (err) {
         console.log("\n\nERROR executing sql: \n" + err.message + '\n\n');
         console.log('The provided SQL was \n' + sql)
