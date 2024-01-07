@@ -2,44 +2,13 @@ import oracledb from 'oracledb';
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 import dotenv from 'dotenv';
 dotenv.config();
-
-
-// const dbConfig = {
-//   user: process.env.DB_USER,
-//   password: process.env.DB_PASSWORD,
-//   connectString: process.env.DB_CONNECTIONSTRING,
-// };
-// let connection;
-
-// export async function connectToOracle() {
-//   try {
-//     connection = await oracledb.getConnection(dbConfig);
-//     console.log('Connected to Oracle Database!');
-
-    
-
-//     const sql = 'SELECT * FROM user_info';
-
-
-//     const result = await connection.execute(sql);
-
-  
-//     console.log('Query Result:', result.rows);
-
-   
-//     await connection.close();
-//     console.log('Connection closed.');
-//   } catch (error) {
-//     console.error('Error connecting to Oracle Database:', error.message);
-//   }
-// }
-
 oracledb.autoCommit = true;
 
  
-// creates connection pool for oracledb
+// connectionn pool
 export async function startup() {
-    console.log('starting up database.');
+
+    console.log('Starting Oracle database...');
     await oracledb.createPool({
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
@@ -53,11 +22,10 @@ export async function startup() {
     
 }
 
-// closes connection pool for oracledb
+// shutdown database
 export async function shutdown() {
-    console.log('shutting down database.');
+    console.log('Shutting down database.');
     try {
-        // If this hangs, you may need DISABLE_OOB=ON in a sqlnet.ora file.
         await oracledb.getPool().close(10);
         console.log('Connection Pool closed');
     } catch(err) {
