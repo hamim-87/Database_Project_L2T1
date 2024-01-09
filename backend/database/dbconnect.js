@@ -34,12 +34,12 @@ export async function shutdown() {
 }
 
 // code to execute sql
-export async function execute(sql){
+export async function execute(sql,binds){
     let connection,results;
     try {
         // Get a connection from the default pool
         connection = await oracledb.getPool().getConnection();
-        results = await connection.execute(sql);
+        results = await connection.execute(sql, binds);
     } catch (err) {
         console.log("\n\nERROR executing sql: \n" + err.message + '\n\n');
         console.log('The provided SQL was \n' + sql)
