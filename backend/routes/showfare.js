@@ -24,11 +24,47 @@ router.get('/', (req, res) =>
 });
 
 router.post('/',async (req, res) =>{
-    console.log(req.body);
-    let from = req.body.from[0];
-    let to = req.body.from[1];
-    console.log(to);
+
+
+    //console.log(req.body);
+    let from = req.body.from;
+    let to = req.body.to;
+
     console.log(from);
+    console.log(to);
+    
+
+    const sql = `
+    SELECT AMOUNT
+    FROM FARE
+    WHERE FROM_STATION=(
+                                            SELECT STATION_ID
+                                            FROM STATION
+                                            WHERE STATION_NAME='${from}' AND PLATFORM=1
+                                            )
+    AND
+    TO_STATION=(
+                            SELECT STATION_ID
+                            FROM STATION
+                            WHERE STATION_NAME='${to}' AND PLATFORM=1
+                            )
+    `;
+    
+
+    try{
+        const result = await execute(sql,[]);
+        console.log(result.rows);
+
+        //returning to the client
+        res.send(result.rows);
+        
+
+    }catch(err){
+        
+        
+        console.error(err);
+    }
+
     
 });
 

@@ -44,15 +44,15 @@ router.post('/', async (req, res) => {
     `;
 
     try{
-        const res = await execute(sql,[]);
+        const result = await execute(sql,[]);
         console.log(`successfully inserted ${userName}..`);
 
     }catch(err){
-        res.send("user_name or email or birth_certificate or phone number or NID is already taken..")
+        res.send("user_name or email or birth_certificate or phone number or NID is already taken..");
         
         console.error(err);
     }
-    cons
+    
 });
 
 
