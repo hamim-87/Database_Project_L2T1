@@ -4,13 +4,19 @@ import oracledb from 'oracledb';
 import queries from './backend/database/sqlQueries.js';
 
 
+
 import signup from './backend/routes/signup.js';
+import stationsFare from './backend/routes/showfare.js';
 
 const app = express();
 const port = 3000;
 
-
+//for sign up route
 app.use('/signup',signup);
+
+//for show fare routes
+
+app.use('/showfare',stationsFare);
 
 
 
