@@ -3,6 +3,7 @@ import path from 'path';
 import {dirname}  from 'path';
 import {fileURLToPath} from 'url';
 import {startup, shutdown, execute} from '../database/dbconnect.js';
+import bcrypt from 'bcryptjs';
 
 import bodyParser from 'body-parser';
 
@@ -30,6 +31,11 @@ router.post('/', async (req, res) => {
     phoneNumber = parseInt(phoneNumber);
     birthCertificate = parseInt(birthCertificate);
 
+    //password hashing 
+    var salt = bcrypt.genSaltSync(10);
+    password = bcrypt.hashSync(password, salt);
+    //bcrypt.compareSync(password, from_db_password);// true or false
+
 
     const sql = `
     INSERT INTO USER_INFO 
@@ -39,16 +45,14 @@ router.post('/', async (req, res) => {
 
     try{
         const res = await execute(sql,[]);
-        console.log("successfully inserted user..");
+        console.log(`successfully inserted ${userName}..`);
 
     }catch(err){
+        res.send("user_name or email or birth_certificate or phone number or NID is already taken..")
+        
         console.error(err);
     }
-
-    console.log(typeof(Nid));
-    console.log(Nid);
-    console.log(birthDate);
-    console.log(gender);
+    cons
 });
 
 

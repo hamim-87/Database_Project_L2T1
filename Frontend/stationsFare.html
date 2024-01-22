@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #station-popup {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .station-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .station-item:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<form action="/showfare" method="POST">
+    <label for="from">FROM:</label>
+    <input type="text" id="from" oninput="showStations('from')" autocomplete="off">
+
+    <label for="to">TO:</label>
+    <input type="text" id="to" oninput="showStations('to')" autocomplete="off">
+
+    <div id="station-popup"></div>
+
+    <input type="submit" value="Submit">
+</form>
+
+<script>
+    const stations = ['Uttara North', 'Uttara Center', 'Uttara South', 'Pallabi', 'Mirpur-11', 'Mirpur-10','Kazipara','Shewrapara','Agargaon','Bijoy Sarani','Farmgate', 'Karwan Bazar','Shahbagh','Dhaka University','Bangladesh Secretariat', 'Motijheel'];
+
+    //initcap function
+    function initcap(inputString) {
+    return inputString.replace(/\b\w/g, function (match) {
+        return match.toUpperCase();
+    });
+}
+    function showStations(inputId) {
+        const inputElement = document.getElementById(inputId);
+        //const inputValue = inputElement.value.toLowerCase();
+        const inputValue = initcap(inputElement.value);
+        const stationPopup = document.getElementById('station-popup');
+
+        const matchingStations = stations.filter(station => station.startsWith(inputValue));
+
+        if (matchingStations.length > 0) {
+            const stationList = matchingStations.map(station => `<div class="station-item" onclick="selectStation('${inputId}', '${station}')">${station}</div>`).join('');
+            stationPopup.innerHTML = stationList;
+            stationPopup.style.display = 'block';
+        } else {
+            stationPopup.style.display = 'none';
+        }
+    }
+
+    function selectStation(inputId, station) {
+        const inputElement = document.getElementById(inputId);
+        inputElement.value = station;
+        document.getElementById('station-popup').style.display = 'none';
+    }
+
+    document.addEventListener('click', function(event) {
+        const stationPopup = document.getElementById('station-popup');
+        if (!event.target.matches('#from') && !event.target.matches('#to')) {
+            stationPopup.style.display = 'none';
+        }
+    });
+</script>
+
+</body>
+</html>
