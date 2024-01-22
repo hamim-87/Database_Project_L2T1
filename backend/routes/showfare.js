@@ -23,4 +23,13 @@ router.get('/', (req, res) =>
     res.sendFile(stationsFarePath);
 });
 
+router.post('/',async (req, res) =>{
+    console.log(req.body);
+    let from = req.body.from[0];
+    let to = req.body.from[1];
+    console.log(to);
+    console.log(from);
+    
+});
+
 export default router;
