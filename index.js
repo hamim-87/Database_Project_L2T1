@@ -9,6 +9,7 @@ import signup from './backend/routes/signup.js';
 import stationsFare from './backend/routes/showfare.js';
 import travellingTime from './backend/routes/travellingtime.js';
 import timeTable from './backend/routes/timetable.js';
+import login from './backend/routes/login.js';
 
 
 const app = express();
@@ -26,6 +27,9 @@ app.use('/travellingtime',travellingTime);
 
 //for timeTable
 app.use('/timeTable',timeTable);
+
+//log in
+app.use('/login',login);
 
 
 

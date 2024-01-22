@@ -46,6 +46,7 @@ router.post('/', async (req, res) => {
     try{
         const result = await execute(sql,[]);
         console.log(`successfully inserted ${userName}..`);
+        res.send(`successfully inserted ${userName}..`);
 
     }catch(err){
         res.send("user_name or email or birth_certificate or phone number or NID is already taken..");
