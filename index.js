@@ -8,6 +8,8 @@ import queries from './backend/database/sqlQueries.js';
 import signup from './backend/routes/signup.js';
 import stationsFare from './backend/routes/showfare.js';
 import travellingTime from './backend/routes/travellingtime.js';
+import timeTable from './backend/routes/timetable.js';
+
 
 const app = express();
 const port = 3000;
@@ -21,6 +23,9 @@ app.use('/showfare',stationsFare);
 
 //for travelling time route
 app.use('/travellingtime',travellingTime);
+
+//for timeTable
+app.use('/timeTable',timeTable);
 
 
 
