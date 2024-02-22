@@ -1,0 +1,33 @@
+.loginContainer {
+    max-width: 300px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.loginContainer h2 {
+    text-align: center;
+}
+
+.loginContainer label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.loginContainer input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+.loginContainer button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
