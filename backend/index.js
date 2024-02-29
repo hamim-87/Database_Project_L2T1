@@ -14,6 +14,7 @@ import travellingTime from './backend/routes/travellingtime.js';
 import timeTable from './backend/routes/timetable.js';
 import login from './backend/routes/login.js';
 import auth from './backend/routes/auth.js';
+import station from './backend/routes/station.js';
 
 
 
@@ -49,6 +50,9 @@ app.use('/login',login);
 app.use('/auth',auth);
 
 //data
+
+//-> station data
+app.use('/station',station);
 
 
 app.get('/', async (req, res) => {
