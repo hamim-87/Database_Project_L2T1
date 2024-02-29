@@ -13,6 +13,7 @@ import stationsFare from './backend/routes/showfare.js';
 import travellingTime from './backend/routes/travellingtime.js';
 import timeTable from './backend/routes/timetable.js';
 import login from './backend/routes/login.js';
+import auth from './backend/routes/auth.js';
 
 
 
@@ -44,6 +45,8 @@ app.use('/timeTable',timeTable);
 //log in
 app.use('/login',login);
 
+//AUTH
+app.use('/auth',auth);
 
 //data
 
