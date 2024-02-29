@@ -1,14 +1,14 @@
 
 import style from "@/components/node/node.module.css";
 
-function Node(){
+function Node(props){
     return (
         <>
         <div className={style.main}>
             <div className={style.station}>
                 <ul className={style.list}>
                     <li className={style.stationName}>
-                        Uttara Center
+                        {props.stations}
                     </li>
                     <li className={style.line}>
                         
