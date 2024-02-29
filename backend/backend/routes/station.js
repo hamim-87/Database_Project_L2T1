@@ -26,7 +26,7 @@ router.get('/',async (req, res) =>
 
     try{
         const result = await execute(sql,[]);
-        console.log(result.rows);
+        
 
         //returning to the client
         res.send(result.rows);
