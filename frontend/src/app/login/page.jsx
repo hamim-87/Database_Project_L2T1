@@ -36,9 +36,19 @@ function loginPage(){
             }
             
             // login success
+            const data = await res.json();
+            console.log(data);
 
-            console.log("login success");
-            router.replace("/register");
+            if (data.status === false) {
+                console.log("Login failed");
+
+                router.replace("/schedule");
+            } else {
+
+                console.log("Login success");
+                router.replace("/home");
+            }
+
 
         }catch(e)
         {
