@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/header/navbar";
 import Node from "@/components/node/node";
 import NodeLine from "@/components/nodeLine/nodeline";
+import ArcLine from "@/components/arcLine/arcLine";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
       <Navbar />
+      <Node stations="hehe" />
+      <ArcLine />
       <Node stations="hehe" />
       <NodeLine />
       

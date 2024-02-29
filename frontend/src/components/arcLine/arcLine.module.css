@@ -1,0 +1,7 @@
+.stip{
+    height: 5rem;
+    width: .3rem;
+    background-color: green;
+    margin-left: 27rem;
+    transform: rotate(-45deg);
+}

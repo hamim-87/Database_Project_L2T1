@@ -29,6 +29,15 @@ function schedulePage(){
         console.log(`source: ${source} destination: ${destination}`);
         if (source && destination) {
           console.log("giveMe the price");
+          axios
+            .post('http://localhost:8080/timetable',{
+                source: source,
+                destination: destination
+            })
+            .then((response) => {
+                console.log(response);
+                
+            })
         }
       }, [source, destination]);
       
