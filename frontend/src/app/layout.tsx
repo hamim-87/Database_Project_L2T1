@@ -6,6 +6,8 @@ import Node from "@/components/node/node";
 import NodeLine from "@/components/nodeLine/nodeline";
 import ArcLine from "@/components/arcLine/arcLine";
 
+import { Toaster } from "@/components/ui/toaster"
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -25,6 +27,8 @@ export default function RootLayout({
       
       
       {children}
+      
+      <Toaster />
       </body>
     </html>
   );

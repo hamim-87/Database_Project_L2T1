@@ -30,7 +30,8 @@
   } from "@/components/ui/table"
 
 
-  import { Toaster } from "@/components/ui/toaster"
+import { useToast } from "@/components/ui/use-toast"
+
 
 function tripPage(){
     const drawerTriggerRef = useRef(null);
@@ -39,11 +40,11 @@ function tripPage(){
 
     const [source ,setSource] = useState("");
 
-    const [fare ,setFare] = useState(0);
+    const [fare ,setFare] = useState("");
 
     const [destination, setDestination] = useState("");
 
-
+    const { toast } = useToast();
 
     useEffect(()=>{
         axios
@@ -65,12 +66,23 @@ function tripPage(){
                 destination: destination
             })
             .then((response) => {
-                console.log(response);
-                setFare(response.data);
+                console.log(response.data[0].AMOUNT);
+                setFare(response.data[0].AMOUNT);
             })
+
+            
             
         }
       }, [source, destination]);
+
+
+      useEffect(()=>{
+        toast({
+            variant: "destructive",
+            title: "Fare",
+            description: fare,
+          })
+      },[fare])
       
 
     const handleNodeClick = (stationName) => {
