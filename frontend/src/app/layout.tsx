@@ -22,13 +22,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
       <Navbar />
-      <Node stations="hehe" />
-      <ArcLine />
-      <Node stations="hehe" />
-      <NodeLine />
+      
       
       {children}
       </body>
     </html>
   );
 }
+
+//<Node stations="hehe" />
+      //<ArcLine />
+      //<Node stations="hehe" />
+      //<NodeLine />

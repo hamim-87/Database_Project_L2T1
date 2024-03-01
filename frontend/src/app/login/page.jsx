@@ -2,6 +2,9 @@
 import styles from "./login.module.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Button } from "@/components/ui/button"
+
+
 function loginPage(){
     const router = useRouter();
 
@@ -71,7 +74,7 @@ function loginPage(){
                 <label htmlFor="password">Password:</label>
                 <input type="password" id="password" name="password" onChange={(e)=>handleInput(e)}  required />
 
-                <button type="submit">Login</button>
+                <Button type="submit">Login</Button>
             </form>
         </div>
     );
