@@ -35,10 +35,10 @@ router.post('/', async (req, res) => {
         if(err)
         {
             console.log("cookies is invalid..");
-            res.send({ status: false});
+            res.status(401).json({status: false});
         }else{
             console.log("valid token ....");
-            res.send({status: true});
+            res.status(200).json({status: true});
         }
     });
 

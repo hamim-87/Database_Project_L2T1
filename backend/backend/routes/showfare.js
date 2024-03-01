@@ -26,9 +26,9 @@ router.get('/', (req, res) =>
 router.post('/',async (req, res) =>{
 
 
-    //console.log(req.body);
-    let from = req.body.from;
-    let to = req.body.to;
+    console.log(req.body);
+    let from = req.body.source;
+    let to = req.body.destination;
 
     console.log(from);
     console.log(to);
