@@ -88,5 +88,7 @@ const options = {
     outFormat: oracledb.OUT_FORMAT_OBJECT
 }
 
+export default options;
+
 
 

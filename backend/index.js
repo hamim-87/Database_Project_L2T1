@@ -16,6 +16,7 @@ import login from './backend/routes/login.js';
 import auth from './backend/routes/auth.js';
 import station from './backend/routes/station.js';
 import cardbalance from './backend/routes/cardbalance.js';
+import tripvalidity from './backend/routes/tripvalidity.js';
 
 
 const app = express();
@@ -56,6 +57,9 @@ app.use('/station',station);
 
 //-> usercard data
 app.use('/cardbalance',cardbalance);
+
+//->vlaidity trip
+app.use('/tripvalidity',tripvalidity);
 
 app.get('/', async (req, res) => {
     res.send('Welcome');
