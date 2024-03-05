@@ -81,7 +81,22 @@ function tripPage(){
       useEffect(()=>{
             //check if he can 
             console.log("generating qrcode");
-      },[isStartTrip]);
+            if(source && destination && isStartTrip)
+            {
+                console.log("validity check of trip");
+                axios
+                .post('http://localhost:8080/tripvalidity',{
+                    source: source,
+                    destination: destination,
+                    username: localStorage.getItem('userName')
+                })
+                .then((response) => {
+                    console.log(response.data);
+                    
+                })
+            }
+
+        },[isStartTrip]);
 
       function handleStartTrip(){
             console.log(`startTrip:`);
