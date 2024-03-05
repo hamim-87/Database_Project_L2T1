@@ -3,6 +3,7 @@ import styles from "./login.module.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button"
+import axios from 'axios';
 
 
 function loginPage(){
@@ -14,6 +15,8 @@ function loginPage(){
     function handleInput(e){
         setUserInfo((prev) => ({...prev, [e.target.name]: e.target.value}));
     }
+
+
 
     async function handleSubmit(e)
     {
@@ -49,6 +52,23 @@ function loginPage(){
             } else {
 
                 console.log("Login success");
+                localStorage.setItem('userName', userInfo.username);
+
+                try{
+                    axios
+                    .post('http://localhost:8080/cardbalance',{
+                        username: userInfo.username
+                    })
+                    .then((response) => {
+                        console.log(response.data[0].BALANCE);
+                        localStorage.setItem('balance', response.data[0].BALANCE);
+                    })
+
+                }catch(e){
+                    console.log(e);
+                }
+
+
                 router.replace("/home");
             }
 

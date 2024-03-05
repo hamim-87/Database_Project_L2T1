@@ -31,6 +31,7 @@
 
 
 import { useToast } from "@/components/ui/use-toast"
+import { ToastAction } from "@/components/ui/toast"
 
 
 function tripPage(){
@@ -45,6 +46,8 @@ function tripPage(){
     const [destination, setDestination] = useState("");
 
     const { toast } = useToast();
+
+    const [isStartTrip, setIsStartTrip] = useState(false);
 
     useEffect(()=>{
         axios
@@ -75,13 +78,26 @@ function tripPage(){
         }
       }, [source, destination]);
 
-
       useEffect(()=>{
-        toast({
-            variant: "destructive",
-            title: "Fare",
-            description: fare,
-          })
+            //check if he can 
+            console.log("generating qrcode");
+      },[isStartTrip]);
+
+      function handleStartTrip(){
+            console.log(`startTrip:`);
+            setIsStartTrip(true);
+      }
+
+     
+      useEffect(()=>{
+
+            toast({
+                variant: "destructive",
+                title: "Fare",
+                description: fare,
+                action: <ToastAction altText="Start Journey" onClick={handleStartTrip}>Start Journey</ToastAction>,
+              })
+  
       },[fare])
       
 
