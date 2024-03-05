@@ -6,6 +6,8 @@
  import { useEffect,useState,useRef} from 'react';
  import NodeLine from "@/components/nodeLine/nodeline";
 
+ import style from './trip.module.css';
+
  import {
     Drawer,
     DrawerClose,
@@ -65,6 +67,8 @@ function tripPage(){
     const [isStartTrip, setIsStartTrip] = useState(false);
 
     const [qrSrc,setQrSrc] = useState("");
+
+    const [showprogress, setShowProgress] = useState(false);
 
     useEffect(()=>{
         axios
@@ -192,6 +196,36 @@ function tripPage(){
         setDestination("");
     }
 
+    useEffect(() =>{
+
+        console.log("procedure can run?");
+        if(showprogress)
+        {
+            console.log("procedure can run -----> yesssss");
+            const qrcodeInfo = localStorage.getItem('userName') + "," + source + "," + destination;
+            axios
+            .post('http://localhost:8080/updatetrip',{
+                source: source,
+                destination: destination,
+                username: localStorage.getItem('userName'),
+                qrcode: qrcodeInfo
+            })
+            .then((response) => {
+                console.log(response.data);
+                
+            })
+        }
+    },[showprogress]);
+    
+    function handleQRcode(){
+
+        localStorage.setItem('qrcode',qrSrc);
+        setShowProgress(true);
+    }
+
+    function showAgain(){
+        qrcodeWindowRef.current.click();
+    }
     return (
         <>
             {stations.map((stn) => (
@@ -214,12 +248,12 @@ function tripPage(){
             </AlertDialogHeader>
             <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction>Continue</AlertDialogAction>
+            <AlertDialogAction onClick={handleQRcode}>Continue</AlertDialogAction>
             </AlertDialogFooter>
         </AlertDialogContent>
         </AlertDialog>
 
-
+        {showprogress && <div className={style.progress} onClick={showAgain}> progress bar </div>}
 
            
         </>
