@@ -62,7 +62,7 @@ router.post('/', async (req, res) => {
     const result = await execute(sql,binds,options);
     console.log("sql res");
     console.log(result);
-    res.send(result);
+    res.send(result.outBinds.tripvalidity);
 
         
     
