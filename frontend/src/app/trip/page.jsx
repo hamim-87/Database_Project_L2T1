@@ -78,6 +78,11 @@ function tripPage(){
                 setStations(response.data);
             })
 
+        if(localStorage.getItem('qrcode')){
+            setQrSrc(localStorage.getItem('qrcode'));
+            setShowProgress(true);
+        }
+
     },[]);
 
     useEffect(() => {
@@ -199,7 +204,7 @@ function tripPage(){
     useEffect(() =>{
 
         console.log("procedure can run?");
-        if(showprogress)
+        if(showprogress && source && destination)
         {
             console.log("procedure can run -----> yesssss");
             const qrcodeInfo = localStorage.getItem('userName') + "," + source + "," + destination;
