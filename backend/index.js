@@ -15,7 +15,7 @@ import timeTable from './backend/routes/timetable.js';
 import login from './backend/routes/login.js';
 import auth from './backend/routes/auth.js';
 import station from './backend/routes/station.js';
-
+import cardbalance from './backend/routes/cardbalance.js';
 
 
 const app = express();
@@ -54,6 +54,8 @@ app.use('/auth',auth);
 //-> station data
 app.use('/station',station);
 
+//-> usercard data
+app.use('/cardbalance',cardbalance);
 
 app.get('/', async (req, res) => {
     res.send('Welcome');
