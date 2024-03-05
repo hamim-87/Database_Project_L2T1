@@ -29,13 +29,28 @@
     TableRow,
   } from "@/components/ui/table"
 
+  import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+  } from "@/components/ui/alert-dialog"
+
 
 import { useToast } from "@/components/ui/use-toast"
 import { ToastAction } from "@/components/ui/toast"
 
+import QRCode from 'qrcode';
+
 
 function tripPage(){
-    const drawerTriggerRef = useRef(null);
+    
+    const qrcodeWindowRef = useRef(null);
 
     const [stations, setStations] = useState([]);
 
@@ -48,6 +63,8 @@ function tripPage(){
     const { toast } = useToast();
 
     const [isStartTrip, setIsStartTrip] = useState(false);
+
+    const [qrSrc,setQrSrc] = useState("");
 
     useEffect(()=>{
         axios
@@ -92,6 +109,35 @@ function tripPage(){
                 })
                 .then((response) => {
                     console.log(response.data);
+
+                    if(response.data == 3)
+                    {
+                        console.log("can genrate qrcode");
+
+                        const qrInfo = {
+                            username: localStorage.getItem('userName'),
+                            source : source,
+                            destination: destination
+                        }
+                        const jsonQrInfo = JSON.stringify(qrInfo);
+                        QRCode.toDataURL(jsonQrInfo).then((val) => setQrSrc(val));
+                        
+                        qrcodeWindowRef.current.click();
+
+                    }
+                    else if(response.data ==2)
+                    {
+                        console.log("No train availbLe");
+
+                    }
+                    else if( response.data == 1)
+                    {
+                        console.log("not enough balance");
+                    }
+                    else{
+                        console.log("service is closed");
+
+                    }
                     
                 })
             }
@@ -154,6 +200,25 @@ function tripPage(){
             {(stn.STATION_ID != 16) && <NodeLine key={stn.STATION_NAME} />}
             </>
         ))}
+
+        <AlertDialog>
+        <AlertDialogTrigger ref={qrcodeWindowRef}>Open</AlertDialogTrigger>
+        <AlertDialogContent>
+            <AlertDialogHeader>
+            <AlertDialogTitle>Your QR Code...</AlertDialogTitle>
+            
+            <AlertDialogDescription>
+                <img src = {qrSrc} />
+                
+            </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction>Continue</AlertDialogAction>
+            </AlertDialogFooter>
+        </AlertDialogContent>
+        </AlertDialog>
+
 
 
            
