@@ -44,6 +44,9 @@
   } from "@/components/ui/alert-dialog"
 
 
+
+  
+
 import { useToast } from "@/components/ui/use-toast"
 import { ToastAction } from "@/components/ui/toast"
 
@@ -282,11 +285,26 @@ function tripPage(){
 
     //finish journey
     const finishedJourney = async ()=>{
+        
+
+
+        axios
+            .post('http://localhost:8080/finishjourney',{
+                username: localStorage.getItem('userName'),
+                
+            })
+            .then((response) => {
+                console.log(response.data);
+                
+            })
+
+        
         localStorage.removeItem('qrcode');
         localStorage.removeItem('arrivalTime');
-        localStorage.removeItem('balance');
+        localStorage?.removeItem('balance');
         setShowProgress(false);
         handleReset();
+
         
     }
 
@@ -318,6 +336,8 @@ function tripPage(){
         </AlertDialog>
 
         {showprogress && <div className={style.progress} onClick={showAgain}> progress bar </div>}
+        
+       
 
            
         </>
