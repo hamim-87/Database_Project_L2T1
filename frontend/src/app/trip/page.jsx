@@ -70,6 +70,13 @@ function tripPage(){
 
     const [showprogress, setShowProgress] = useState(false);
 
+    const [curTime, setCurTime] = useState("");
+
+    const [showFinishButton, setFinishButton] = useState(false);
+
+    const [arrivalTime, setArrivalTime] = useState("");
+
+    const [continueButton, setContinueButton] = useState(false);
     useEffect(()=>{
         axios
             .get('http://localhost:8080/station')
@@ -77,11 +84,25 @@ function tripPage(){
                 console.log(response);
                 setStations(response.data);
             })
+        
+        console.log("before check");
+        console.log(localStorage.getItem('qrcode'));
+       
+        if(localStorage.getItem('qrcode') != undefined){
 
-        if(localStorage.getItem('qrcode')){
+            console.log("already exist QRCOde");
             setQrSrc(localStorage.getItem('qrcode'));
+            
+            setArrivalTime(localStorage.getItem('arrivalTime'));
             setShowProgress(true);
         }
+
+        const intervalId = setInterval(() => {
+            setCurTime(new Date().toLocaleTimeString());
+        }, 20000);
+    
+        
+        return () => clearInterval(intervalId);
 
     },[]);
 
@@ -103,6 +124,11 @@ function tripPage(){
             
         }
       }, [source, destination]);
+
+     
+
+
+
 
       useEffect(()=>{
             //check if he can 
@@ -160,7 +186,6 @@ function tripPage(){
 
      
       useEffect(()=>{
-
             toast({
                 variant: "destructive",
                 title: "Fare",
@@ -204,8 +229,9 @@ function tripPage(){
     useEffect(() =>{
 
         console.log("procedure can run?");
-        if(showprogress && source && destination)
+        if(showprogress && source && destination && !continueButton)
         {
+            setFinishButton(false);
             console.log("procedure can run -----> yesssss");
             const qrcodeInfo = localStorage.getItem('userName') + "," + source + "," + destination;
             axios
@@ -217,6 +243,11 @@ function tripPage(){
             })
             .then((response) => {
                 console.log(response.data);
+
+                localStorage.setItem("arrivalTime", response.data[0].Time);
+
+                setArrivalTime(response.data[0].Time);
+                setContinueButton(true); 
                 
             })
         }
@@ -231,6 +262,34 @@ function tripPage(){
     function showAgain(){
         qrcodeWindowRef.current.click();
     }
+
+
+    // show the finished button
+    useEffect(()=>{
+        const time1 = curTime.substring(0, 5);
+        const time2 = arrivalTime.substring(0, 5);
+        
+        // Compare the first 5 characters
+
+        console.log("comapering time"+time1 + " " + time2);
+        if(time1 === time2)
+        {
+            console.log("finished button show");
+            setFinishButton(true);
+        }
+    },[curTime]);
+
+
+    //finish journey
+    const finishedJourney = async ()=>{
+        localStorage.removeItem('qrcode');
+        localStorage.removeItem('arrivalTime');
+        localStorage.removeItem('balance');
+        setShowProgress(false);
+        handleReset();
+        
+    }
+
     return (
         <>
             {stations.map((stn) => (
@@ -241,7 +300,7 @@ function tripPage(){
         ))}
 
         <AlertDialog>
-        <AlertDialogTrigger ref={qrcodeWindowRef}>Open</AlertDialogTrigger>
+        <AlertDialogTrigger ref={qrcodeWindowRef}></AlertDialogTrigger>
         <AlertDialogContent>
             <AlertDialogHeader>
             <AlertDialogTitle>Your QR Code...</AlertDialogTitle>
@@ -252,7 +311,7 @@ function tripPage(){
             </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            {showFinishButton && <AlertDialogCancel  onClick={finishedJourney}>Finished</AlertDialogCancel>}
             <AlertDialogAction onClick={handleQRcode}>Continue</AlertDialogAction>
             </AlertDialogFooter>
         </AlertDialogContent>
