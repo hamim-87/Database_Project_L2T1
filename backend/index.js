@@ -19,6 +19,7 @@ import cardbalance from './backend/routes/cardbalance.js';
 import tripvalidity from './backend/routes/tripvalidity.js';
 import updatetrip from './backend/routes/updatetrip.js';
 import finishjourney from './backend/routes/finishjourney.js';
+import profile from './backend/routes/profile.js';
 
 const app = express();
 const port = 8080;
@@ -67,6 +68,11 @@ app.use('/updatetrip',updatetrip);
 
 //finished journey
 app.use('/finishjourney',finishjourney);
+
+//profile
+app.use('/profile',profile);
+
+
 app.get('/', async (req, res) => {
     res.send('Welcome');
     
