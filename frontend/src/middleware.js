@@ -123,6 +123,6 @@ export const config = {
     "/trip",
     "/login",
     "/register",
-    "/profile/:path*"
+    
   ],
 }

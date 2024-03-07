@@ -43,8 +43,18 @@
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
 
-
-
+  import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+  } from "@/components/ui/popover"
+  
+  import {
+    HoverCard,
+    HoverCardContent,
+    HoverCardTrigger,
+  } from "@/components/ui/hover-card"
+  
   
 
 import { useToast } from "@/components/ui/use-toast"
@@ -91,7 +101,7 @@ function tripPage(){
         console.log("before check");
         console.log(localStorage.getItem('qrcode'));
        
-        if(localStorage.getItem('qrcode') != undefined){
+        if(localStorage.getItem('qrcode') != null){
 
             console.log("already exist QRCOde");
             setQrSrc(localStorage.getItem('qrcode'));
@@ -338,8 +348,79 @@ function tripPage(){
         {showprogress && <div className={style.progress} onClick={showAgain}> progress bar </div>}
         
        
+        <AlertDialog>
+        <AlertDialogTrigger>Open</AlertDialogTrigger>
+        <AlertDialogContent>
+            <AlertDialogHeader>
+            <AlertDialogTitle>Your Journey has successfully finished...</AlertDialogTitle>
+            <AlertDialogDescription>
+                Thank You For Choosing Our Service.
+            </AlertDialogDescription>
+            <AlertDialogDescription>
+                We Are Delighted To Give You A Swift Ride Of Metro Rail.
+            </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+            
+            <AlertDialogAction>Cancel</AlertDialogAction>
+            </AlertDialogFooter>
+        </AlertDialogContent>
+        </AlertDialog>
 
-           
+
+        <AlertDialog>
+        <AlertDialogTrigger>service not availble</AlertDialogTrigger>
+        <AlertDialogContent>
+            <AlertDialogHeader>
+            <AlertDialogTitle>Service Is Not Available At This Moment</AlertDialogTitle>
+            <AlertDialogDescription>
+                We Are Sorry!
+                Our Service Is Closed From 8:20PM Till 6:30AM.
+                Please Try Again Later...
+            </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+            
+            <AlertDialogAction>Cancel</AlertDialogAction>
+            </AlertDialogFooter>
+        </AlertDialogContent>
+        </AlertDialog>
+
+
+        <AlertDialog>
+        <AlertDialogTrigger>taka nai</AlertDialogTrigger>
+        <AlertDialogContent>
+            <AlertDialogHeader>
+            <AlertDialogTitle>You Don't Have Enough Balance</AlertDialogTitle>
+            <AlertDialogDescription>
+                You Don't Have Sufficient Balance In Your Card For This Metro Journey.
+                Please Recharge Your Card!
+            </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+            
+            <AlertDialogAction>Cancel</AlertDialogAction>
+            </AlertDialogFooter>
+        </AlertDialogContent>
+        </AlertDialog>
+
+        
+        <AlertDialog>
+        <AlertDialogTrigger>train nai</AlertDialogTrigger>
+        <AlertDialogContent>
+            <AlertDialogHeader>
+            <AlertDialogTitle>No More Trains Available</AlertDialogTitle>
+            <AlertDialogDescription>
+                No More Trains Available From This Station Today.
+                Please Try Again From Another Station.
+            </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+            
+            <AlertDialogAction>Cancel</AlertDialogAction>
+            </AlertDialogFooter>
+        </AlertDialogContent>
+        </AlertDialog>
         </>
     );
 }
