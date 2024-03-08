@@ -21,6 +21,7 @@ import updatetrip from './backend/routes/updatetrip.js';
 import finishjourney from './backend/routes/finishjourney.js';
 import profile from './backend/routes/profile.js';
 import updatebalance from './backend/routes/updatebalance.js';
+import history from './backend/routes/history.js';
 
 const app = express();
 const port = 8080;
@@ -75,6 +76,10 @@ app.use('/profile',profile);
 
 //update balace
 app.use('/updatebalance',updatebalance);
+
+
+//history
+app.use('/history',history);
 
 
 app.get('/', async (req, res) => {
