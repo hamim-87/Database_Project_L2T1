@@ -22,6 +22,7 @@ import finishjourney from './backend/routes/finishjourney.js';
 import profile from './backend/routes/profile.js';
 import updatebalance from './backend/routes/updatebalance.js';
 import history from './backend/routes/history.js';
+import chart from './backend/routes/chart.js';
 
 const app = express();
 const port = 8080;
@@ -81,6 +82,8 @@ app.use('/updatebalance',updatebalance);
 //history
 app.use('/history',history);
 
+//chart
+app.use('/chart',chart);
 
 app.get('/', async (req, res) => {
     res.send('Welcome');
