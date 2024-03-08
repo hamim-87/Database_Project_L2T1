@@ -27,35 +27,16 @@ import {
     HoverCardTrigger,
   } from "@/components/ui/hover-card"
   
-
+import ProfileHeader from "@/components/profileheader/profileheader"
   
 export default function homePage(){
     return(
         <>
-            <div>Using drawer</div>
-            <Drawer>
-                <DrawerTrigger>Open</DrawerTrigger>
-                <DrawerContent>
-                    <DrawerHeader>
-                    <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-                    <DrawerDescription>This action cannot be undone.</DrawerDescription>
-                    </DrawerHeader>
-                    <DrawerFooter>
-                    <Button>Submit</Button>
-                    <DrawerClose>
-                        <Button variant="outline">Cancel</Button>
-                    </DrawerClose>
-                    </DrawerFooter>
-                </DrawerContent>
-            </Drawer>
+            <div>main test</div>
+          <ProfileHeader />
 
          
-            <HoverCard>
-  <HoverCardTrigger>Hover</HoverCardTrigger>
-  <HoverCardContent>
-    The React Framework – created and maintained by @vercel.
-  </HoverCardContent>
-</HoverCard>
+         
 
         </>
     );

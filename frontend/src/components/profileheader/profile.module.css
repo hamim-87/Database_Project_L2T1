@@ -1,0 +1,40 @@
+
+.main{
+    background-color: aqua;
+
+    height: 4rem;
+
+    display: grid;
+
+    grid-template-columns: 6rem 1fr 1fr 1fr 1fr 1fr 1fr 6rem;
+}
+
+.username{
+    display: grid;
+    grid-column: 2/3;
+    justify-content: end;
+    align-items: center;
+}
+
+.importUser{
+    display: grid;
+    grid-column: 3/4;
+    justify-content: start;
+    align-items: center;
+    margin-left: .2rem;
+}
+
+
+.recharge{
+    display: grid;
+    grid-column: 6/7;
+    justify-content: start;
+    align-items: center;
+}
+
+.travel{
+    display: grid;
+    grid-column: 7/8;
+    justify-content: start;
+    align-items: center;
+}
