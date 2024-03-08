@@ -20,6 +20,7 @@ import tripvalidity from './backend/routes/tripvalidity.js';
 import updatetrip from './backend/routes/updatetrip.js';
 import finishjourney from './backend/routes/finishjourney.js';
 import profile from './backend/routes/profile.js';
+import updatebalance from './backend/routes/updatebalance.js';
 
 const app = express();
 const port = 8080;
@@ -71,6 +72,9 @@ app.use('/finishjourney',finishjourney);
 
 //profile
 app.use('/profile',profile);
+
+//update balace
+app.use('/updatebalance',updatebalance);
 
 
 app.get('/', async (req, res) => {

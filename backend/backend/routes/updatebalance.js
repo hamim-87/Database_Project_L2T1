@@ -29,9 +29,31 @@ router.post('/', async (req, res) => {
     
     
     const user = req.body.username;
+
+    const add = req.body.recharge;
+
+
+    console.log("user added " + user + ": " + add);
     
     
     //console.log(user);
+
+    const updatesql = `
+        UPDATE CARD SET BALANCE=BALANCE+${add} WHERE USER_ID=(SELECT USER_ID
+        FROM USER_INFO
+        WHERE USER_NAME='${user}')
+    `;
+
+    try{
+        const result = await execute(updatesql,[]);
+        
+
+    }catch(err){
+        
+        
+        console.error(err);
+    }
+
 
     const sql = `
     SELECT BALANCE
