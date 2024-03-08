@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
     console.log(username);
 
     const sql  = `
-    SELECT Profile_name,Gender,Date_Of_Birth,Phone_NO,Email,NID_NO,Birth_Certificate_NO,Address
+    SELECT Profile_name,Gender,TO_CHAR(Date_Of_Birth,'DD-MM-YYYY') AS "DATE_OF_BIRTH",Phone_NO,Email,NID_NO,Birth_Certificate_NO,Address
 FROM USER_INFO
 WHERE USER_NAME='${username}'
     `;
