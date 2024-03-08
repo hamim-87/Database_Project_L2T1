@@ -1,0 +1,24 @@
+
+.main{
+    background-color: aquamarine;
+    display: grid;
+    grid-template-columns: 6rem 1fr 1fr 1fr 1fr 1fr 1fr 6rem;
+}
+
+.key{
+    display: grid;
+    grid-column: 3/4;
+    font-weight: bold;
+    justify-content: center;
+}
+.colon{
+    display: grid;
+    font-weight: bold;
+    grid-column: 4/5;
+    justify-content: end;
+
+}
+.value{
+    display: grid;
+    grid-column: 6/7;
+}
