@@ -1,4 +1,4 @@
-
+"use client"
 import style from './profile.module.css';
 import { Button } from "@/components/ui/button"
 
@@ -13,6 +13,8 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
+
+  
 
   import {
     Tooltip,
@@ -48,8 +50,48 @@ import {
 
   import { Input } from "@/components/ui/input"
 
+  import { useEffect, useState } from 'react';
 
-function ProfileHeader(){
+  import axios from 'axios';
+
+function ProfileHeader({userName}){
+
+    const [rechargeInfo,setRechargeInfo] = useState({account:"", recharge:""});
+
+    const [user , setUser] = useState("");
+
+    useEffect(()=>{
+        setUser(localStorage.getItem("userName"));
+    },)
+
+    function handleInput(e){
+        console.log("handleInput");
+        setRechargeInfo((prev) => ({...prev, [e.target.name]: e.target.value}));
+    }
+
+    async function handleSubmit(){
+
+        try{
+            axios
+            .post('http://localhost:8080/updatebalance',{
+                username: user,
+                recharge: rechargeInfo.recharge
+            })
+            .then((response) => {
+                console.log(response.data);
+
+                localStorage.setItem('balance', response.data[0].BALANCE);
+
+                //SUCCESSFULLY RECHARGE
+                
+            })
+
+        }catch(e){
+            console.log(e);
+        }
+    }
+
+    console.log(rechargeInfo);
     return (
         <>
             <div className={style.main}>
@@ -58,7 +100,7 @@ function ProfileHeader(){
                     </div>
                     <div className={style.importUser}>
                         
-                        Hamim
+                        {userName}
                     </div>
 
                     
@@ -88,11 +130,11 @@ function ProfileHeader(){
                                         <CardContent className="space-y-2">
                                             <div className="space-y-1">
                                             <Label htmlFor="name">Account No:</Label>
-                                            <Input id="name"  />
+                                            <Input id="name" name='account' onChange={(e)=>handleInput(e)}  required />
                                             </div>
                                             <div className="space-y-1">
                                             <Label htmlFor="username">Recharge Amount</Label>
-                                            <Input id="username"  />
+                                            <Input id="username" name='recharge' onChange={(e)=>handleInput(e)}  required />
                                             </div>
                                         </CardContent>
                                         <CardFooter>
@@ -111,11 +153,11 @@ function ProfileHeader(){
                                         <CardContent className="space-y-2">
                                             <div className="space-y-1">
                                             <Label htmlFor="current">Phone No</Label>
-                                            <Input id="current" type="password" />
+                                            <Input id="current" name='account' onChange={(e)=>handleInput(e)}  required />
                                             </div>
                                             <div className="space-y-1">
                                             <Label htmlFor="new">Recharge Amount</Label>
-                                            <Input id="new" type="password" />
+                                            <Input id="new"  name='recharge' onChange={(e)=>handleInput(e)}  required />
                                             </div>
                                         </CardContent>
                                         <CardFooter>
@@ -128,8 +170,8 @@ function ProfileHeader(){
 
                             </AlertDialogHeader>
                             <AlertDialogFooter>
-                            <AlertDialogCancel>Cancel</AlertDialogCancel>
-                            <AlertDialogAction>Confirm</AlertDialogAction>
+                            <AlertDialogCancel >Cancel</AlertDialogCancel>
+                            <AlertDialogAction onClick={handleSubmit}>Confirm</AlertDialogAction>
                             </AlertDialogFooter>
                         </AlertDialogContent>
                         </AlertDialog>

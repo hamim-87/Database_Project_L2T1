@@ -22,16 +22,20 @@ function Navbar(){
     
     const [showlogin, setShowLogin] = useState(false);
 
+    const [balance, setBalance] = useState("");
+
+   
+
     useEffect(() =>{
         setInterval(()=>{
             if(localStorage.getItem('userName') === null)
         {
-            console.log("please login...")
+            
             setlogin(true);
         }
         else{
 
-            console.log("you already log in")
+            setBalance(localStorage.getItem("balance"));
             setlogin(false);
         }
         },1000);
@@ -75,10 +79,10 @@ function Navbar(){
 
                     {!login &&
                     
-                    <HoverCard>
-                        <HoverCardTrigger>Balance</HoverCardTrigger>
+                    <HoverCard >
+                        <HoverCardTrigger >Balance</HoverCardTrigger>
                         <HoverCardContent>
-                            Your Balance: {localStorage.getItem('balance')}
+                            Your Balance: {balance }
                         </HoverCardContent>
                     </HoverCard>}
 
