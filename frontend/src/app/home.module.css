@@ -1,0 +1,39 @@
+
+.header{
+    background-color: wheat;
+    height: 8rem;
+}
+
+.welcome{
+    display: grid;
+    height: 6rem;
+    justify-content: center;
+    align-items: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 2rem;
+    
+}
+
+.subheader{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.bodypic{
+    height: 20rem;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    background-color: aqua;
+    place-items: center;
+}
+
+.sidebar{
+    display: grid;
+    grid-column: 1/2;
+    justify-content: center;
+    align-items: center;
+
+    margin-left: 2rem;
+}

@@ -1,0 +1,66 @@
+.main{
+    background-color: #30363d;
+    color: white;
+    height: 60rem;
+    
+}
+
+.header{
+    color: white;
+    height: 6rem;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+
+}
+
+.dashboard{
+    display: grid;
+    grid-column: 1/2;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+}
+
+
+.three{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 10rem;
+    
+}
+
+.subscriber{
+    display: grid;
+    grid-column: 1/2;
+    color: white;
+
+    justify-content: center;
+    align-items: center;
+
+}
+
+.revenue{
+    display: grid;
+    grid-column: 2/3;
+    color: white;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.trip{
+    display: grid;
+    grid-column: 3/4;
+    color: white;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.chart{
+    color:white;
+    height: 30rem;
+    background-color: black;
+}
