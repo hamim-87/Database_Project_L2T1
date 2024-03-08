@@ -54,11 +54,15 @@ import {
 
   import axios from 'axios';
 
+  import HistoryCard from '../historycard/historycard';
+
 function ProfileHeader({userName}){
 
     const [rechargeInfo,setRechargeInfo] = useState({account:"", recharge:""});
 
     const [user , setUser] = useState("");
+
+    const [history, setHistory] = useState([]);
 
     useEffect(()=>{
         setUser(localStorage.getItem("userName"));
@@ -92,6 +96,27 @@ function ProfileHeader({userName}){
     }
 
     console.log(rechargeInfo);
+
+
+    async function handleHistory(){
+
+        try{
+            axios
+            .post('http://localhost:8080/history',{
+                username: user,
+            })
+            .then((response) => {
+                console.log(response.data);
+
+                setHistory(response.data);
+                
+            })
+
+        }catch(e){
+            console.log(e);
+        }
+
+    }
     return (
         <>
             <div className={style.main}>
@@ -182,13 +207,19 @@ function ProfileHeader({userName}){
                         
                         <Sheet>
 
-                        <Button variant="ghost" ><SheetTrigger>Travel History</SheetTrigger></Button>
+                        <Button variant="ghost"  onClick={handleHistory}><SheetTrigger >Travel History</SheetTrigger></Button>
                         
                             <SheetContent>
                                 <SheetHeader>
-                                <SheetTitle>Are you absolutely sure?</SheetTitle>
+                                <SheetTitle>Your Previous Trips</SheetTitle>
                                 
-                                <div>hehe</div>
+                                    <HistoryCard first="Origin" second ="Destination" third ="Payment" fourth="Date"/>
+
+                                    {history.map((h) => (
+                                        <>
+                                            <HistoryCard first={h.ORG} second ={h.DES} third ={h.PAYMENT} fourth={h.DATE}/>
+                                        </>
+                                    ))}
                                 </SheetHeader>
                             </SheetContent>
                         </Sheet>

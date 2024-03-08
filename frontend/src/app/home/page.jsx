@@ -28,12 +28,14 @@ import {
   } from "@/components/ui/hover-card"
   
 import ProfileHeader from "@/components/profileheader/profileheader"
+
+import HistoryCard from "../../components/historycard/historycard"
   
 export default function homePage(){
     return(
         <>
             <div>main test</div>
-          <ProfileHeader />
+          <HistoryCard />
 
          
          

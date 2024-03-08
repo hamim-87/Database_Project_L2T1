@@ -1,0 +1,39 @@
+
+.main{
+    background-color: beige;
+    display: grid;
+
+    height: 3rem;
+
+    grid-template-columns:  1fr 1fr 1fr 1fr;
+    
+}
+
+
+.first{
+    display: grid;
+    grid-column: 1/2;
+    justify-content: center;
+    align-items: center;
+}
+
+.second{
+    display: grid;
+    grid-column: 2/3;
+    justify-content: center;
+    align-items: center;
+}
+
+.third{
+    display: grid;
+    grid-column: 3/4;
+    justify-content: center;
+    align-items: center;
+}
+
+.fourth{
+    display: grid;
+    grid-column: 4/5;
+    justify-content: center;
+    align-items: center;
+}
