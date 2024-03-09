@@ -298,7 +298,7 @@ function tripPage(){
                 
             })
         
-        
+            localStorage.removeItem('balance');
             axios
             .post('http://localhost:8080/cardbalance',{
                 username: localStorage.getItem('userName'),
@@ -306,7 +306,7 @@ function tripPage(){
             })
             .then((response) => {
                 console.log(response.data);
-                localStorage.setItem('balace', response.data[0].BALANCE);
+                localStorage.setItem('balance', response.data[0].BALANCE);
             })
         
         localStorage.removeItem('qrcode');

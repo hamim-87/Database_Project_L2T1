@@ -32,31 +32,43 @@
 }
 
 .subscriber{
-    display: grid;
-    grid-column: 1/2;
+    
     color: white;
 
+    display: flex;
     justify-content: center;
     align-items: center;
+
+    height: 8rem;
+    width: 20rem;
+    background-color: black;
 
 }
 
 .revenue{
-    display: grid;
-    grid-column: 2/3;
+    
     color: white;
 
+    display: flex;
     justify-content: center;
     align-items: center;
+
+    height: 8rem;
+    width: 20rem;
+    background-color: black;
 }
 
 .trip{
-    display: grid;
-    grid-column: 3/4;
+    
     color: white;
 
+    display: flex;
     justify-content: center;
     align-items: center;
+
+    height: 8rem;
+    width: 20rem;
+    background-color: black;
 }
 
 .chart{

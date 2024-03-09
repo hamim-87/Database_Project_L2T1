@@ -66,7 +66,7 @@ function Navbar(){
         <>
             <div className={style.main}>
                 <div className={style.logo}>
-                    <h2>logo</h2>
+                    MetroInverse
                 </div>
 
                 <div className={style.menuList}>
