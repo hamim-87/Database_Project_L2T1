@@ -23,6 +23,9 @@ import profile from './backend/routes/profile.js';
 import updatebalance from './backend/routes/updatebalance.js';
 import history from './backend/routes/history.js';
 import chart from './backend/routes/chart.js';
+import states from './backend/routes/states.js';
+
+import subscribe from './backend/routes/subsribe.js'
 
 const app = express();
 const port = 8080;
@@ -84,6 +87,13 @@ app.use('/history',history);
 
 //chart
 app.use('/chart',chart);
+
+
+//states
+app.use('/states',states);
+
+//sub
+app.use('/subscribe',subscribe);
 
 app.get('/', async (req, res) => {
     res.send('Welcome');
