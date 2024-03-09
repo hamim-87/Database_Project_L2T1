@@ -27,6 +27,8 @@ import states from './backend/routes/states.js';
 
 import subscribe from './backend/routes/subsribe.js';
 
+import userdelete from './backend/routes/userdelete.js';
+
 import logout from './backend/routes/logout.js';
 
 const app = express();
@@ -100,6 +102,9 @@ app.use('/subscribe',subscribe);
 
 //logout
 app.use('/logout',logout);
+
+//
+app.use('/userdelete',userdelete);
 
 app.get('/', async (req, res) => {
     res.send('Welcome');
