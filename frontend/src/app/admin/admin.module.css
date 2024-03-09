@@ -60,7 +60,11 @@
 }
 
 .chart{
-    color:white;
+    color:rgb(162, 71, 71);
     height: 30rem;
     background-color: black;
+}
+
+.textcol{
+    color: white;
 }

@@ -59,7 +59,40 @@ const AdminDashboard = () => {
 
   const [info, setInfo] = useState(data);
 
+  const [stats, setStats] = useState({total:"", money:"", SUBSCRIBER:""});
+
+  const [sub, setSub] = useState("");
+
   useEffect(()=>{
+
+    axios
+        .get('http://localhost:8080/states')
+        .then((response) => {
+            
+            console.log(response.data);
+            console.log(response.data.MONEY);
+
+
+            setStats(response.data);
+            
+
+            
+        });
+
+        axios
+        .get('http://localhost:8080/subscribe')
+        .then((response) => {
+            
+            console.log(response.data);
+            
+
+
+           setSub(response.data[0].SUBSCRIBER);
+            
+
+            
+        });
+
     try{
         axios
         .get('http://localhost:8080/chart')
@@ -75,10 +108,16 @@ const AdminDashboard = () => {
           });
           setInfo(updatedInfo);
         });
+
+
+        
+
+        
     }catch(e){
 
     }
   },[])
+
 
   return (
     <div className={style.main}>
@@ -90,14 +129,19 @@ const AdminDashboard = () => {
 
         <div className={style.three}>
                 <div className={style.subscriber}>
-                    total subscriber
+                    <div className={style.textcol}>Total Subscriber</div>
+                    <div className={style.textcol}>{sub}</div>
                 </div>
                 <div className={style.revenue}>
-                    total revenue
+                    
+                    <div className={style.textcol}>Total Revenue</div>
+                    <div className={style.textcol}>{stats.money}</div>
                 </div>
 
                 <div className={style.trip}>
-                    total trip
+                    
+                    <div className={style.textcol}>Total Trip</div>
+                    <div className={style.textcol}>{stats.total}</div>
                 </div>
         </div>
 

@@ -1,6 +1,6 @@
 
 .header{
-    background-color: wheat;
+    background-color: #DCF2F1;
     height: 8rem;
 }
 
@@ -25,7 +25,7 @@
     height: 20rem;
     display: grid;
     grid-template-columns: 2fr 3fr;
-    background-color: aqua;
+    background-color: #DCF2F1;
     place-items: center;
 }
 

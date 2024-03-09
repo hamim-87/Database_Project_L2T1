@@ -126,7 +126,7 @@ function schedulePage(){
 
 
             <Drawer>
-                <DrawerTrigger ref={drawerTriggerRef} >Open</DrawerTrigger>
+                <DrawerTrigger ref={drawerTriggerRef} ></DrawerTrigger>
                 <DrawerContent>
                     <DrawerHeader className="text-center">
                         <DrawerTitle className="mx-auto">Time Table</DrawerTitle>
@@ -135,7 +135,7 @@ function schedulePage(){
                                 
                     
                             </DrawerDescription>
-                            <div>hehe</div>
+                            
 
                             <Table>
                                 <TableCaption></TableCaption>
