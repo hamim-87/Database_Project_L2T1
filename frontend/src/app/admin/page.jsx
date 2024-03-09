@@ -53,6 +53,7 @@ const data = [
 ]
 
 import axios from "axios";
+import { Button } from "@/components/ui/button"
 
 const AdminDashboard = () => {
   // Your admin dashboard content goes here
@@ -62,7 +63,13 @@ const AdminDashboard = () => {
   const [stats, setStats] = useState({total:"", money:"", SUBSCRIBER:""});
 
   const [sub, setSub] = useState("");
+  
 
+  const [userInfo,setUserInfo] = useState({username:"", password:""});
+
+  function handleInput(e){
+    setUserInfo((prev) => ({...prev, [e.target.name]: e.target.value}));
+}
   useEffect(()=>{
 
     axios
@@ -118,6 +125,20 @@ const AdminDashboard = () => {
     }
   },[])
 
+  async function handleSubmit(){
+
+    axios
+    .post('http://localhost:8080/userdelete',{
+        username: userInfo.username,
+        
+    })
+    .then((response) => {
+        console.log(response.data);
+        
+    });
+  }
+
+  console.log(userInfo);
 
   return (
     <div className={style.main}>
@@ -147,6 +168,16 @@ const AdminDashboard = () => {
 
         <div className={style.chart}>
             <BarChart data = {info} />
+        </div>
+
+        <div>
+          <form onSubmit={handleSubmit}>
+                <label htmlFor="username">Username:</label>
+                <input type="text" id="username" name="username" onChange={(e)=>handleInput(e)} className={style.inputtext}  required />
+
+
+                <Button type="submit">Confirm</Button>
+            </form>
         </div>
     </div>
   );
