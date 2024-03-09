@@ -1,11 +1,16 @@
 import { NextResponse } from 'next/server'
 import { NextRequest } from 'next/server'
 
- // This function can be marked `async` if using `await` inside
-export async function middleware(request) {
-    console.log("middleware executed");
+import { cookies } from 'next/headers'
 
+ // This function can be marked `async` if using `await` inside
+export async function middleware(request,res) {
+    console.log("middleware executed");
+    
     const cookies = request.cookies.get('jwt')?.value;
+
+    
+    
 
     
     if(cookies === undefined)
@@ -123,6 +128,7 @@ export const config = {
     "/trip",
     "/login",
     "/register",
+    
     
   ],
 }

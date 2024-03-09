@@ -48,6 +48,17 @@ function Navbar(){
         localStorage.removeItem('userName');
         localStorage.removeItem('balance');
 
+        
+            const res = await fetch('http://localhost:8080/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                 // Send data as JSON
+                credentials: 'include',
+            });
+            console.log(res.json());
+
         router.replace("/login");
     }
 
