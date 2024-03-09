@@ -60,7 +60,7 @@ function loginPage(){
                         username: userInfo.username
                     })
                     .then((response) => {
-                        console.log(response.data[0].BALANCE);
+                        console.log(response.data);
                         localStorage.setItem('balance', response.data[0].BALANCE);
                     })
 
@@ -69,7 +69,7 @@ function loginPage(){
                 }
 
 
-                router.replace("/home");
+                router.replace("/profile");
             }
 
 

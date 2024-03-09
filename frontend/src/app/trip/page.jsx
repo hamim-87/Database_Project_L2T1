@@ -43,17 +43,7 @@
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
 
-  import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-  } from "@/components/ui/popover"
-  
-  import {
-    HoverCard,
-    HoverCardContent,
-    HoverCardTrigger,
-  } from "@/components/ui/hover-card"
+
   
   
 
@@ -307,11 +297,21 @@ function tripPage(){
                 console.log(response.data);
                 
             })
-
+        
+        
+            axios
+            .post('http://localhost:8080/cardbalance',{
+                username: localStorage.getItem('userName'),
+                
+            })
+            .then((response) => {
+                console.log(response.data);
+                localStorage.setItem('balace', response.data[0].BALANCE);
+            })
         
         localStorage.removeItem('qrcode');
         localStorage.removeItem('arrivalTime');
-        localStorage?.removeItem('balance');
+        
         setShowProgress(false);
         handleReset();
 

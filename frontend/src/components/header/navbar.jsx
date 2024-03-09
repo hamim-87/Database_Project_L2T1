@@ -4,6 +4,8 @@ import style from "./navbar.module.css";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button"
 
+import { useRouter } from "next/navigation";
+
 import {
     Popover,
     PopoverContent,
@@ -24,6 +26,7 @@ function Navbar(){
 
     const [balance, setBalance] = useState("");
 
+    const router = useRouter();
    
 
     useEffect(() =>{
@@ -40,6 +43,13 @@ function Navbar(){
         }
         },1000);
     },[]);
+
+    async function handlelogout(){
+        localStorage.removeItem('userName');
+        localStorage.removeItem('balance');
+
+        router.replace("/login");
+    }
 
     return (
         <>
@@ -88,14 +98,11 @@ function Navbar(){
 
                     {!login &&
                     
-                    <div>
-                        my profile
-
-                    </div>}
+                    <Link href="/profile">My Profile</Link>}
 
                     {!login &&
                     
-                    <Button variant="destructive">
+                    <Button variant="destructive" onClick={handlelogout}>
                         log out
                     </Button>}
 
